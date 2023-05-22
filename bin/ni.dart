@@ -1,27 +1,27 @@
-import 'dart:io';
+class Person {
+  String name;
+  int age;
+  String address;
 
-List<int> getOddNumbers(List<int> numbers) {
-  return numbers.where((number) => number % 2 != 0).toList();
+  Person(this.name, this.age, this.address);
+
+  void sayHello() {
+    print("Hello, my name is $name.");
+  }
+
+  int getAgeInMonths() {
+    return age * 12;
+  }
 }
 
 void main() {
-  // Take input from user
-  print('Enter a list of numbers, separated by commas:');
-  final input = stdin.readLineSync();
+  // create a new person object with your own name, age, and address
+  Person person = Person("John Doe", 30, "123 Main St, Anytown USA");
 
-  // Validate input
-  final regex = RegExp(r'^\d+(,\d+)*$');
-  if (!regex.hasMatch(input!)) {
-    print('Invalid input format');
-    return;
-  }
+  // call the sayHello() method to check if it prints the correct output to the console
+  person.sayHello();
 
-  final numbers = input.replaceAll(' ', '').split(',').map(int.parse).toList();
-
-  // Get odd numbers from input list
-  final oddNumbers = getOddNumbers(numbers);
-
-  // Print both lists
-  print('Input list: $numbers');
-  print('Odd numbers: $oddNumbers');
+  // call the getAgeInMonths() method and print the result to the console
+  int ageInMonths = person.getAgeInMonths();
+  print("Age in months: $ageInMonths");
 }
